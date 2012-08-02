@@ -1,0 +1,24 @@
+php_flag magic_quotes_gpc off
+
+RewriteEngine on
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA] 
+
+# turn on compression
+<IfModule mod_deflate.c>
+	<FilesMatch "\.(js|css)$">
+		SetOutputFilter DEFLATE
+	</FilesMatch>
+</IfModule>
+
+# deny access of all .ht... files
+<Files ~ "^\.ht">
+	Order allow,deny
+	Deny from all
+</Files>
+
+# disable ETAGS
+Header unset ETag
+FileETag None
