@@ -15,7 +15,13 @@ function cruder($_url) {
 	curl_close($ch);
 	return $res;
 }
-echo cruder(base64_decode(urldecode($_REQUEST['url'])));
+if (isset($_REQUEST['encoded'])) {
+	echo cruder(base64_decode(urldecode($_REQUEST['url'])));
+}
+else {
+	echo cruder(urldecode($_REQUEST['url']));
+}
+
  
 ?>
 

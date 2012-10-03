@@ -6,16 +6,23 @@ ini_set('display_errors', '1'); // show errors, remove when deployed
 // See: http://hacks.mozilla.org/2009/07/cross-site-xmlhttprequest-with-cors/
 header('Access-Control-Allow-Origin: *'); // for X domain ajax requests
 
+
+// PDF CONVERTER SITES //
+// See: https://developer.mozilla.org/En/HTTP_access_control
+// See: http://hacks.mozilla.org/2009/07/cross-site-xmlhttprequest-with-cors/
+
+
+
 //set POST variables
-$url = 'http://dopiaza.org/tools/datauri/';
+$url = 'http://www24.online-convert.com/init-document-conversion';
 $post_items = array();
 
 // See: http://www.html-form-guide.com/php-form/php-form-submit.html
 //create array of data to be posted
-$post_data['url'] = 'http://i998.mangareader.net/naruto/602/naruto-3597787.jpg';
-$post_data['datasource'] = 'url';
-$post_data['base64'] = 'base64';
-$post_data['Submit'] = 'Generate Data URI';
+$post_data['external_url'] = base64_decode($_GET['src']); 
+$post_data['string_method'] = 'convert-to-pdf';
+$post_data['UPLOAD_PROGRESS'] = '3eb62e5bc117fa13a29195a13d1aed6c'; 
+
 
 //traverse array and prepare data for posting (key1=value1)
 foreach ( $post_data as $key => $value) {
